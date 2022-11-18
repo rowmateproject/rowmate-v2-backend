@@ -1,10 +1,23 @@
-from bson import ObjectId
 from pydantic import BaseModel, Field
-
-
-class Boat(BaseModel):
-    name: str
+from typing import Literal
+from beanie import PydanticObjectId
+from config import config
 
 
 class CreateBoat(BaseModel):
+    name: str = Field(None, max_length=100)
+    category: Literal[tuple(config["boatCategories"])]
+    total: int = Field(None, lt=100)
+    cox: bool
+
+
+class Boat(CreateBoat):
+    id: PydanticObjectId = Field(default_factory=PydanticObjectId, alias="_id")
+
+
+class CreateBoatResponse(BaseModel):
+    id: PydanticObjectId
+
+
+class FindBoatByName(BaseModel):
     name: str = Field(None, max_length=100)

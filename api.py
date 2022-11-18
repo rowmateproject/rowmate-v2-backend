@@ -1,5 +1,5 @@
 from fastapi import APIRouter
-from routers import boats, config
+from routers import boats, config, adverts, users
 
 from models.users import UserCreate, UserRead, UserUpdate, User
 from users import auth_backend, fastapi_users
@@ -7,6 +7,8 @@ from users import auth_backend, fastapi_users
 router = APIRouter()
 router.include_router(boats.router)
 router.include_router(config.router)
+router.include_router(adverts.router)
+router.include_router(users.router)
 
 
 router.include_router(

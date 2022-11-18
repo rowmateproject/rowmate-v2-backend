@@ -1,7 +1,7 @@
-from typing import Optional
+from typing import Optional, Literal
 
 from beanie import PydanticObjectId
-from fastapi import Depends, Request
+from fastapi import Depends, Request, HTTPException
 from fastapi_users import BaseUserManager, FastAPIUsers
 from fastapi_users.authentication import (
     AuthenticationBackend,
@@ -9,14 +9,13 @@ from fastapi_users.authentication import (
     JWTStrategy,
 )
 from fastapi_users.db import BeanieUserDatabase, ObjectIDIDMixin
-
+from models.users import roles
 from db import User, get_user_db
 import os
 from dotenv import load_dotenv
 load_dotenv()
 
 SECRET = os.getenv('JWTSECRET')
-print(SECRET)
 
 
 class UserManager(ObjectIDIDMixin, BaseUserManager[User, PydanticObjectId]):
@@ -56,4 +55,25 @@ auth_backend = AuthenticationBackend(
 
 fastapi_users = FastAPIUsers[User, PydanticObjectId](get_user_manager, [auth_backend])
 
+get_current_user = fastapi_users.current_user()
 current_active_user = fastapi_users.current_user(active=True)
+
+
+async def get_allowed_user(user: User = Depends(fastapi_users.current_user())):
+    if isinstance(user, User):
+        if not (user.is_accepted and user.is_active and user.is_verified):
+            raise HTTPException(status_code=401)
+        return user
+    else:
+        raise HTTPException(status_code=403)
+
+
+class RequireRole:
+    def __init__(self, required_role: Literal[roles]):
+        self.role = required_role
+
+    def __call__(self, user: User = Depends(get_allowed_user)):
+        if self.role not in user.roles:
+            raise HTTPException(status_code=403, detail="You don't have the role required to perform this action")
+        else:
+            return user

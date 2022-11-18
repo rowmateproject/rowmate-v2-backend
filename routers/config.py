@@ -9,7 +9,7 @@ from models.config import Config
 
 router = APIRouter(
     prefix="/config",
-    tags=["boat"],
+    tags=["config"],
     responses={404: {"description": "Not found"}},
 )
 

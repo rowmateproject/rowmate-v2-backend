@@ -1,4 +1,6 @@
 {
   "messagesttl": 3628800,
-  "langs": ["de-CH", "fr-CH"]
+  "langs": ["de-CH", "fr-CH"],
+  "boatCategories": ["racing", "cgig", "other"],
+  "advertTextMaxLength": 256
 }

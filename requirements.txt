@@ -3,3 +3,4 @@ fastapi-users[beanie]
 uvicorn
 python-dotenv
 beanie
+pydantic
