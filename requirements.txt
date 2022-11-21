@@ -4,3 +4,6 @@ uvicorn
 python-dotenv
 beanie
 pydantic
+# dev
+pytest
+faker
