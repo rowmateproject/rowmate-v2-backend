@@ -1,0 +1,24 @@
+name: Run Backend Tests
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout repo
+      uses: actions/checkout@v2
+    - name: Create mongoDB Docker container for API testing
+      uses: DigiPie/mongo-action@v1.0.1
+    - name: Setup Python
+      uses: actions/setup-python@v2.3.3
+      with:
+        python-version: 3.10
+        cache: "pip"
+    - name: Install dependencies
+      run: pip3 install -r requirements.txt
+    
+      env:
+        CI: true
+        MONGODB_URI: mongodb://localhost:27017/ROWMATE-TEST # Access mongoDB Docker container
+        
