@@ -1,3 +1,5 @@
+![Test](https://github.com/rowmateproject/rowmate-v2-backend/actions/workflows/test.yml/badge.svg)
+
 # README Backend
 
 # .env and config.json

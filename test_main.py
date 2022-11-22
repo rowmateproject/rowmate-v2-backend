@@ -98,8 +98,3 @@ def test_get_config(cli):
     response = cli.get("/config")
     assert response.status_code == 200
 
-
-def test_error(cli):
-    response = cli.get("/config")
-    assert response.status_code == 0
-
