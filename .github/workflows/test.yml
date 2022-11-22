@@ -17,6 +17,8 @@ jobs:
         cache: "pip"
     - name: Install dependencies
       run: pip3 install -r requirements.txt
+    - name: Run pytest
+      run: pytest
     
       env:
         CI: true
