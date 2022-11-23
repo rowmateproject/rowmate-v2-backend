@@ -7,10 +7,10 @@ from fastapi import Depends
 from db import User, db
 from beanie import init_beanie
 from dotenv import load_dotenv
+from logger import logger
 load_dotenv()
 
 app = FastAPI()
-
 origins = ["http://localhost:8000", "http://localhost:5173"]
 
 app.add_middleware(
@@ -40,4 +40,5 @@ async def on_startup():
 
 if __name__ == '__main__':
     uvicorn.run("main:app", host='127.0.0.1', port=8000, log_level="info", reload=True)
+    logger.info("App running")
     print("running")
