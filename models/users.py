@@ -47,7 +47,7 @@ class Avatar(BaseModel):
 
 
 class PublicUser(BaseModel):
-    id: PydanticObjectId
+    _id: PydanticObjectId  # Problems with _id and id ???
     firstname: str
     lastname: str
     avatar: Avatar
@@ -91,6 +91,7 @@ class UserCreate(schemas.CreateUpdateDictModel):
     is_superuser: bool = Field(False, const=True)
     is_verified: bool = Field(False, const=True)
     is_accepted: bool = Field(False, const=True)
+    is_email_verified: bool = Field(False, const=True)
     roles: List = Field(["User"], const=True)
 
 

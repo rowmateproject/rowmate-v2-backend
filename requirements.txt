@@ -1,5 +1,6 @@
 fastapi
 fastapi-users[beanie]
+fastapi-mailp
 uvicorn
 python-dotenv
 beanie
