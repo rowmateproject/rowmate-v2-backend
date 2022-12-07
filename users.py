@@ -33,6 +33,7 @@ conf = ConnectionConfig(
     USE_CREDENTIALS=os.getenv('USE_CREDENTIALS'),
     VALIDATE_CERTS=os.getenv('VALIDATE_CERTS'),
     TEMPLATE_FOLDER=Path(__file__).parent / 'templates',
+    SUPPRESS_SEND=os.getenv('SUPPRESS_SEND')
 )
 
 
