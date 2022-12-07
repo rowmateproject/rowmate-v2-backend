@@ -24,5 +24,5 @@ jobs:
         CI: true
         MONGODB_URI: mongodb://localhost:27017/ROWMATE-TEST # Access mongoDB Docker container
         JWTSECRET: ABCDEFGHIJKLMNOP
-        SUPPRESS_SEND: True
+        SUPPRESS_SEND: 1
         
