@@ -1,10 +1,11 @@
+import os
+os.environ['SUPPRESS_SEND'] = "1"
 from fastapi.testclient import TestClient
 import random
 import string
 from main import app
 from faker import Faker
 from pytest import fixture
-
 
 @fixture(scope="session", autouse=True)
 def cli():

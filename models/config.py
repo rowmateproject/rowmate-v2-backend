@@ -2,7 +2,7 @@
 from pydantic import BaseModel
 from typing import List, Literal
 
-supported_languages = ("de-CH", "fr-CH")  # Supported languages
+supported_languages = ("de-CH", "fr-CH", "en-GB")  # Supported languages
 supported_boat_categories = ("racing", "cgig", "other")  # Supported boat categories
 
 
