@@ -12,7 +12,8 @@ from fastapi_users.authentication import (
 from fastapi_users.db import BeanieUserDatabase, ObjectIDIDMixin
 from models.users import roles
 from db import User, get_user_db
-from fastapi_mail import ConnectionConfig, FastMail, MessageSchema, MessageType
+from fastapi_mail import ConnectionConfig, FastMail, MessageSchema
+from fastapi_mail.schemas import MessageType
 import os
 from dotenv import load_dotenv
 from fastapi_users import exceptions, models
