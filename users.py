@@ -123,7 +123,7 @@ class UserManager(ObjectIDIDMixin, BaseUserManager[User, PydanticObjectId]):
             subject="Rowmate Registration",
             recipients=[user.email],
             template_body=template_body,
-            subtype=MessageType.html)
+            subtype="html")
 
         fm = FastMail(conf)
         await fm.send_message(message, template_name="register.{}.html".format(user.lang))
