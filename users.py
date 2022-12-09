@@ -13,13 +13,21 @@ from fastapi_users.db import BeanieUserDatabase, ObjectIDIDMixin
 from models.users import roles
 from db import User, get_user_db
 from fastapi_mail import ConnectionConfig, FastMail, MessageSchema
-from fastapi_mail.schemas import MessageType
 import os
 from dotenv import load_dotenv
 from fastapi_users import exceptions, models
 import jwt
 from fastapi_users.jwt import decode_jwt
 from logger import logger
+
+# test workaround for issue #1
+from enum import Enum
+
+
+class MessageType(Enum):
+    plain = 'plain'
+    html = 'html'
+
 load_dotenv()
 
 SECRET = os.getenv('JWTSECRET')
