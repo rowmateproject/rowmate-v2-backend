@@ -1,4 +1,13 @@
 import os
+os.environ['MAIL_USERNAME'] = "app@rowmate.org"
+os.environ['MAIL_PASSWORD'] = "123"
+os.environ['MAIL_FROM'] = "app@rowmate.org"
+os.environ['MAIL_PORT'] = "123"
+os.environ['MAIL_SERVER'] = "mail.rowmate.org"
+os.environ['MAIL_STARTTLS'] = False
+os.environ['MAIL_SSL_TLS'] = True
+os.environ['USE_CREDENTIALS'] = False
+os.environ['VALIDATE_CERTS'] = False
 os.environ['SUPPRESS_SEND'] = "1"
 from fastapi.testclient import TestClient
 import random
@@ -11,7 +20,6 @@ from pytest import fixture
 def cli():
     with TestClient(app) as cli:
         yield cli
-
 
 
 fake = Faker()
