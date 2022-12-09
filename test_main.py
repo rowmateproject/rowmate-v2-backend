@@ -9,6 +9,7 @@ os.environ['MAIL_SSL_TLS'] = "True"
 os.environ['USE_CREDENTIALS'] = "False"
 os.environ['VALIDATE_CERTS'] = "False"
 os.environ['SUPPRESS_SEND'] = "1"
+os.environ['JWTSECRET'] = "ABCDEFGHIJKLMNOP"
 from fastapi.testclient import TestClient
 import random
 import string
