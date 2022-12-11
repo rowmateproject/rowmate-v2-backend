@@ -40,7 +40,6 @@ conf = ConnectionConfig(
     MAIL_STARTTLS=os.getenv('MAIL_STARTTLS'),
     MAIL_SSL_TLS=os.getenv('MAIL_SSL_TLS'),
     USE_CREDENTIALS=os.getenv('USE_CREDENTIALS'),
-    VALIDATE_CERTS=os.getenv('VALIDATE_CERTS'),
     TEMPLATE_FOLDER=Path(__file__).parent / 'templates',
     SUPPRESS_SEND=os.getenv('SUPPRESS_SEND')
 )
