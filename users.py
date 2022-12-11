@@ -28,8 +28,9 @@ class MessageType(Enum):
     plain = 'plain'
     html = 'html'
 
-load_dotenv()
 
+load_dotenv()
+print(os.getenv('MAIL_SSL_TLS'))
 SECRET = os.getenv('JWTSECRET')
 conf = ConnectionConfig(
     MAIL_USERNAME=os.getenv('MAIL_USERNAME'),
