@@ -30,7 +30,6 @@ class MessageType(Enum):
 
 
 load_dotenv()
-print(os.getenv('MAIL_SSL_TLS'))
 SECRET = os.getenv('JWTSECRET')
 conf = ConnectionConfig(
     MAIL_USERNAME=os.getenv('MAIL_USERNAME'),
@@ -38,8 +37,6 @@ conf = ConnectionConfig(
     MAIL_FROM=os.getenv('MAIL_FROM'),
     MAIL_PORT=os.getenv('MAIL_PORT'),
     MAIL_SERVER=os.getenv('MAIL_SERVER'),
-    MAIL_STARTTLS=os.getenv('MAIL_STARTTLS'),
-    MAIL_SSL_TLS=os.getenv('MAIL_SSL_TLS'),
     USE_CREDENTIALS=os.getenv('USE_CREDENTIALS'),
     TEMPLATE_FOLDER=Path(__file__).parent / 'templates',
     SUPPRESS_SEND=os.getenv('SUPPRESS_SEND')
