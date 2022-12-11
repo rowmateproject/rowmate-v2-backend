@@ -1,14 +1,7 @@
 import os
-os.environ['MAIL_USERNAME'] = "app@rowmate.org"
-os.environ['MAIL_PASSWORD'] = "123"
-os.environ['MAIL_FROM'] = "app@rowmate.org"
-os.environ['MAIL_PORT'] = "123"
-os.environ['MAIL_SERVER'] = "mail.rowmate.org"
-os.environ['MAIL_STARTTLS'] = "False"
-os.environ['MAIL_SSL_TLS'] = "True"
-os.environ['USE_CREDENTIALS'] = "True"
-os.environ['SUPPRESS_SEND'] = "1"
-os.environ['JWTSECRET'] = "ABCDEFGHIJKLMNOP"
+from dotenv import load_dotenv
+BASEDIR = os.path.abspath(os.path.dirname(__file__))
+load_dotenv(os.path.join(BASEDIR, 'pytest.env'))
 from fastapi.testclient import TestClient
 import random
 import string
