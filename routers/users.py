@@ -7,7 +7,7 @@ from fastapi.encoders import jsonable_encoder
 from models.boats import CreateBoat, Boat, CreateBoatResponse, FindBoatByName
 from db import db
 from bson.objectid import ObjectId
-from models.users import User, PublicUser
+from models.users import User, PublicUser, RestrictedUser
 from users import fastapi_users, RequireRole
 pydantic.json.ENCODERS_BY_TYPE[ObjectId] = str
 
@@ -28,7 +28,13 @@ router = APIRouter(
 
 @router.get("/public/{id}", response_model=PublicUser)
 async def public_user_by_id(id: PydanticObjectId, user: User = Depends(RequireRole("User"))):
+
     res = await users.find_one({"_id": id})
     res["id"] = res["_id"]
     return res
 
+
+@router.get("/", response_model=List[RestrictedUser])
+async def public_users(user: User = Depends(RequireRole("Admin"))):
+    res = await users.aggregate([{"$addFields": {"id": "$_id"}}, {"$project": {"hashed_password": 0}}]).to_list(10000)
+    return res

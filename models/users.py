@@ -55,8 +55,17 @@ class PublicUser(BaseModel):
     lang: Literal[tuple(config['langs'])]
 
 
+class RestrictedUser(PublicUser):
+    is_accepted: bool
+    is_email_verified: bool
+    is_active: bool
+    is_superuser: bool
+    is_verified: bool
+    email: str
+
 class User(BeanieBaseUser[PydanticObjectId]):
     is_accepted: bool
+    is_email_verified: bool
     firstname: str
     lastname: str
     yob: int
@@ -72,6 +81,7 @@ class UserRead(PublicUser):
     yob: int
     is_active: bool
     is_verified: bool
+    is_email_verified: bool
     is_superuser: bool
     is_accepted: bool
 

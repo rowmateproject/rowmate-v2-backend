@@ -6,12 +6,13 @@ from datetime import datetime
 from models.boats import Boat
 
 
-class AdvertDB(BaseModel):  # like saved in DB
+class AdvertDB(BaseModel):  # as saved in DB
     owner: PydanticObjectId
     created: datetime
     time: datetime
     boat: Optional[PydanticObjectId]
     text: Optional[str]
+
 
 class Advert(BaseModel):
     owner: PublicUser
@@ -25,6 +26,7 @@ class CreateAdvert(BaseModel):
     time: datetime
     boat: Optional[PydanticObjectId]
     text: str = Field(None, max_length=256)
+
 
 class CreateAdvertResponse(Advert):
     pass

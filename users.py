@@ -40,9 +40,11 @@ class UserManager(ObjectIDIDMixin, BaseUserManager[User, PydanticObjectId]):
 
     async def verify(self, token: str, request: Optional[Request] = None) -> models.UP:
         """
+        ---> PATCHED FUNCTION FOR ROWMATE <---
+
         Validate a verification request.
 
-        Changes the is_verified flag of the user to True.
+        Changes the is_email_verified flag of the user to True.
 
         Triggers the on_after_verify handler on success.
 
@@ -85,7 +87,9 @@ class UserManager(ObjectIDIDMixin, BaseUserManager[User, PydanticObjectId]):
         if user.is_verified:
             raise exceptions.UserAlreadyVerified()
 
-        verified_user = await self._update(user, {"is_verified": True})
+        verified_user = await self._update(user, {"is_email_verified": True})
+        if verified_user.is_accepted:
+            verified_user = await self._update(verified_user, {"is_verified": True})
 
         await self.on_after_verify(verified_user, request)
         return verified_user

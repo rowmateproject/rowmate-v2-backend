@@ -30,6 +30,7 @@ The following flags will then exist:
 - is_superuser : For superusers
 - is_verified : Boolean: is_accepted AND is_email_verified
 - is_email_verified: If E-Mail-Address has been verified
+- is_accepted: accepted by the organisation
 - is_active : Some random flag from fastapi-users? Generally set to true. Don't rely on it for security checks.
 
 Flag 

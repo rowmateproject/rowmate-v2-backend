@@ -1,21 +1,24 @@
 from pydantic import BaseModel, Field
-from typing import List
+from typing import List, Optional
 from beanie import PydanticObjectId
-from users import PublicUser
+from models.users import PublicUser
 from datetime import datetime
-from messages import Message
+from models.messages import Message
+from models.adverts import Advert
 
 
 class ChatDB(BaseModel):  # How Chats are saved in the database
     deletion: datetime
     owner: PydanticObjectId
     users: List[PydanticObjectId]
+    advert: Optional[PydanticObjectId]
     created: datetime
 
 
 class Chat(BaseModel):  # How Chats are sent back from the API
     owner: PublicUser
     users: List[PublicUser]
+    advert: Advert
     created: datetime
 
 
