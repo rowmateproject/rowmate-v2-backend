@@ -57,6 +57,7 @@ def create_user():
       "is_superuser": False,
       "is_verified": False,
       "is_accepted": False,
+      "is_email_verified": False,
       "roles": [
         "User"
       ]
