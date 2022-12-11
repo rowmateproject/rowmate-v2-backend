@@ -20,15 +20,6 @@ import jwt
 from fastapi_users.jwt import decode_jwt
 from logger import logger
 
-# test workaround for issue #1
-from enum import Enum
-
-
-class MessageType(Enum):
-    plain = 'plain'
-    html = 'html'
-
-
 load_dotenv()
 SECRET = os.getenv('JWTSECRET')
 conf = ConnectionConfig(
