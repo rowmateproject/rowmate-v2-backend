@@ -109,7 +109,8 @@ class UserManager(ObjectIDIDMixin, BaseUserManager[User, PydanticObjectId]):
         template_body = {
             "firstname": user.firstname,
             "lastname": user.lastname,
-            "token": token
+            "token": token,
+            "frontend": os.getenv("FRONTEND_URL")
         }
         message = MessageSchema(
             subject="Rowmate Registration",

@@ -39,7 +39,7 @@ async def read_adverts(user: User = Depends(RequireRole("User"))):
             "as": "owner"
         }},
         {"$addFields": {"boat": {"$arrayElemAt": ["$boat", 0]}}},
-        {"$addFields": {"owner": {"$arrayElemAt": ["owner", 0]}}}
+        {"$addFields": {"owner": {"$arrayElemAt": ["$owner", 0]}}}
     ]
 
     adslist = await adverts.aggregate(pipeline).to_list(10000)
